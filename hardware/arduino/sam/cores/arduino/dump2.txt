@@ -1,0 +1,329 @@
+In archive libvariant_flutter_gcc_dbg.a:
+
+variant.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.NVIC_SetPriority:
+
+00000000 <NVIC_SetPriority>:
+   0:	b480      	push	{r7}
+   2:	b083      	sub	sp, #12
+   4:	af00      	add	r7, sp, #0
+   6:	4603      	mov	r3, r0
+   8:	6039      	str	r1, [r7, #0]
+   a:	71fb      	strb	r3, [r7, #7]
+   c:	f997 3007 	ldrsb.w	r3, [r7, #7]
+  10:	2b00      	cmp	r3, #0
+  12:	da0b      	bge.n	2c <NVIC_SetPriority+0x2c>
+  14:	490d      	ldr	r1, [pc, #52]	; (4c <NVIC_SetPriority+0x4c>)
+  16:	79fb      	ldrb	r3, [r7, #7]
+  18:	f003 030f 	and.w	r3, r3, #15
+  1c:	3b04      	subs	r3, #4
+  1e:	683a      	ldr	r2, [r7, #0]
+  20:	b2d2      	uxtb	r2, r2
+  22:	0112      	lsls	r2, r2, #4
+  24:	b2d2      	uxtb	r2, r2
+  26:	440b      	add	r3, r1
+  28:	761a      	strb	r2, [r3, #24]
+  2a:	e009      	b.n	40 <NVIC_SetPriority+0x40>
+  2c:	4908      	ldr	r1, [pc, #32]	; (50 <NVIC_SetPriority+0x50>)
+  2e:	f997 3007 	ldrsb.w	r3, [r7, #7]
+  32:	683a      	ldr	r2, [r7, #0]
+  34:	b2d2      	uxtb	r2, r2
+  36:	0112      	lsls	r2, r2, #4
+  38:	b2d2      	uxtb	r2, r2
+  3a:	440b      	add	r3, r1
+  3c:	f883 2300 	strb.w	r2, [r3, #768]	; 0x300
+  40:	370c      	adds	r7, #12
+  42:	46bd      	mov	sp, r7
+  44:	f85d 7b04 	ldr.w	r7, [sp], #4
+  48:	4770      	bx	lr
+  4a:	bf00      	nop
+  4c:	e000ed00 	.word	0xe000ed00
+  50:	e000e100 	.word	0xe000e100
+
+Disassembly of section .text.SysTick_Config:
+
+00000000 <SysTick_Config>:
+   0:	b580      	push	{r7, lr}
+   2:	b082      	sub	sp, #8
+   4:	af00      	add	r7, sp, #0
+   6:	6078      	str	r0, [r7, #4]
+   8:	687b      	ldr	r3, [r7, #4]
+   a:	f1b3 7f80 	cmp.w	r3, #16777216	; 0x1000000
+   e:	d301      	bcc.n	14 <SysTick_Config+0x14>
+  10:	2301      	movs	r3, #1
+  12:	e011      	b.n	38 <SysTick_Config+0x38>
+  14:	4b0a      	ldr	r3, [pc, #40]	; (40 <SysTick_Config+0x40>)
+  16:	687a      	ldr	r2, [r7, #4]
+  18:	f022 427f 	bic.w	r2, r2, #4278190080	; 0xff000000
+  1c:	3a01      	subs	r2, #1
+  1e:	605a      	str	r2, [r3, #4]
+  20:	f04f 30ff 	mov.w	r0, #4294967295
+  24:	210f      	movs	r1, #15
+  26:	4b07      	ldr	r3, [pc, #28]	; (44 <SysTick_Config+0x44>)
+  28:	4798      	blx	r3
+  2a:	4b05      	ldr	r3, [pc, #20]	; (40 <SysTick_Config+0x40>)
+  2c:	2200      	movs	r2, #0
+  2e:	609a      	str	r2, [r3, #8]
+  30:	4b03      	ldr	r3, [pc, #12]	; (40 <SysTick_Config+0x40>)
+  32:	2207      	movs	r2, #7
+  34:	601a      	str	r2, [r3, #0]
+  36:	2300      	movs	r3, #0
+  38:	4618      	mov	r0, r3
+  3a:	3708      	adds	r7, #8
+  3c:	46bd      	mov	sp, r7
+  3e:	bd80      	pop	{r7, pc}
+  40:	e000e010 	.word	0xe000e010
+  44:	00000000 	.word	0x00000000
+
+Disassembly of section .text._Z11serialEventv:
+
+00000000 <_Z11serialEventv>:
+   0:	b480      	push	{r7}
+   2:	af00      	add	r7, sp, #0
+   4:	46bd      	mov	sp, r7
+   6:	f85d 7b04 	ldr.w	r7, [sp], #4
+   a:	4770      	bx	lr
+
+Disassembly of section .text.USART0_Handler:
+
+00000000 <USART0_Handler>:
+   0:	b580      	push	{r7, lr}
+   2:	af00      	add	r7, sp, #0
+   4:	4801      	ldr	r0, [pc, #4]	; (c <USART0_Handler+0xc>)
+   6:	4b02      	ldr	r3, [pc, #8]	; (10 <USART0_Handler+0x10>)
+   8:	4798      	blx	r3
+   a:	bd80      	pop	{r7, pc}
+	...
+
+Disassembly of section .text._Z12serialEvent1v:
+
+00000000 <_Z12serialEvent1v>:
+   0:	b480      	push	{r7}
+   2:	af00      	add	r7, sp, #0
+   4:	46bd      	mov	sp, r7
+   6:	f85d 7b04 	ldr.w	r7, [sp], #4
+   a:	4770      	bx	lr
+
+Disassembly of section .text.UART1_Handler:
+
+00000000 <UART1_Handler>:
+   0:	b580      	push	{r7, lr}
+   2:	af00      	add	r7, sp, #0
+   4:	4801      	ldr	r0, [pc, #4]	; (c <UART1_Handler+0xc>)
+   6:	4b02      	ldr	r3, [pc, #8]	; (10 <UART1_Handler+0x10>)
+   8:	4798      	blx	r3
+   a:	bd80      	pop	{r7, pc}
+	...
+
+Disassembly of section .text._Z14serialEventRunv:
+
+00000000 <_Z14serialEventRunv>:
+   0:	b580      	push	{r7, lr}
+   2:	af00      	add	r7, sp, #0
+   4:	480d      	ldr	r0, [pc, #52]	; (3c <_Z14serialEventRunv+0x3c>)
+   6:	4b0e      	ldr	r3, [pc, #56]	; (40 <_Z14serialEventRunv+0x40>)
+   8:	4798      	blx	r3
+   a:	4603      	mov	r3, r0
+   c:	2b00      	cmp	r3, #0
+   e:	bf0c      	ite	eq
+  10:	2300      	moveq	r3, #0
+  12:	2301      	movne	r3, #1
+  14:	b2db      	uxtb	r3, r3
+  16:	2b00      	cmp	r3, #0
+  18:	d001      	beq.n	1e <_Z14serialEventRunv+0x1e>
+  1a:	4b0a      	ldr	r3, [pc, #40]	; (44 <_Z14serialEventRunv+0x44>)
+  1c:	4798      	blx	r3
+  1e:	480a      	ldr	r0, [pc, #40]	; (48 <_Z14serialEventRunv+0x48>)
+  20:	4b0a      	ldr	r3, [pc, #40]	; (4c <_Z14serialEventRunv+0x4c>)
+  22:	4798      	blx	r3
+  24:	4603      	mov	r3, r0
+  26:	2b00      	cmp	r3, #0
+  28:	bf0c      	ite	eq
+  2a:	2300      	moveq	r3, #0
+  2c:	2301      	movne	r3, #1
+  2e:	b2db      	uxtb	r3, r3
+  30:	2b00      	cmp	r3, #0
+  32:	d001      	beq.n	38 <_Z14serialEventRunv+0x38>
+  34:	4b06      	ldr	r3, [pc, #24]	; (50 <_Z14serialEventRunv+0x50>)
+  36:	4798      	blx	r3
+  38:	bd80      	pop	{r7, pc}
+  3a:	bf00      	nop
+	...
+
+Disassembly of section .text.init:
+
+00000000 <init>:
+   0:	b590      	push	{r4, r7, lr}
+   2:	b083      	sub	sp, #12
+   4:	af00      	add	r7, sp, #0
+   6:	4b35      	ldr	r3, [pc, #212]	; (dc <init+0xdc>)
+   8:	4798      	blx	r3
+   a:	4b35      	ldr	r3, [pc, #212]	; (e0 <init+0xe0>)
+   c:	681a      	ldr	r2, [r3, #0]
+   e:	4b35      	ldr	r3, [pc, #212]	; (e4 <init+0xe4>)
+  10:	fba3 1302 	umull	r1, r3, r3, r2
+  14:	099b      	lsrs	r3, r3, #6
+  16:	4618      	mov	r0, r3
+  18:	4b33      	ldr	r3, [pc, #204]	; (e8 <init+0xe8>)
+  1a:	4798      	blx	r3
+  1c:	4603      	mov	r3, r0
+  1e:	2b00      	cmp	r3, #0
+  20:	bf0c      	ite	eq
+  22:	2300      	moveq	r3, #0
+  24:	2301      	movne	r3, #1
+  26:	b2db      	uxtb	r3, r3
+  28:	2b00      	cmp	r3, #0
+  2a:	d000      	beq.n	2e <init+0x2e>
+  2c:	e7fe      	b.n	2c <init+0x2c>
+  2e:	482f      	ldr	r0, [pc, #188]	; (ec <init+0xec>)
+  30:	4b2f      	ldr	r3, [pc, #188]	; (f0 <init+0xf0>)
+  32:	4798      	blx	r3
+  34:	4b2f      	ldr	r3, [pc, #188]	; (f4 <init+0xf4>)
+  36:	4798      	blx	r3
+  38:	2300      	movs	r3, #0
+  3a:	607b      	str	r3, [r7, #4]
+  3c:	e006      	b.n	4c <init+0x4c>
+  3e:	6878      	ldr	r0, [r7, #4]
+  40:	2100      	movs	r1, #0
+  42:	4b2d      	ldr	r3, [pc, #180]	; (f8 <init+0xf8>)
+  44:	4798      	blx	r3
+  46:	687b      	ldr	r3, [r7, #4]
+  48:	3301      	adds	r3, #1
+  4a:	607b      	str	r3, [r7, #4]
+  4c:	687b      	ldr	r3, [r7, #4]
+  4e:	2b1c      	cmp	r3, #28
+  50:	d9f5      	bls.n	3e <init+0x3e>
+  52:	4b2a      	ldr	r3, [pc, #168]	; (fc <init+0xfc>)
+  54:	f04f 32ff 	mov.w	r2, #4294967295
+  58:	f8c3 20a0 	str.w	r2, [r3, #160]	; 0xa0
+  5c:	4b28      	ldr	r3, [pc, #160]	; (100 <init+0x100>)
+  5e:	f04f 32ff 	mov.w	r2, #4294967295
+  62:	f8c3 20a0 	str.w	r2, [r3, #160]	; 0xa0
+  66:	4825      	ldr	r0, [pc, #148]	; (fc <init+0xfc>)
+  68:	2101      	movs	r1, #1
+  6a:	2260      	movs	r2, #96	; 0x60
+  6c:	2300      	movs	r3, #0
+  6e:	4c25      	ldr	r4, [pc, #148]	; (104 <init+0x104>)
+  70:	47a0      	blx	r4
+  72:	2000      	movs	r0, #0
+  74:	2101      	movs	r1, #1
+  76:	4b20      	ldr	r3, [pc, #128]	; (f8 <init+0xf8>)
+  78:	4798      	blx	r3
+  7a:	4821      	ldr	r0, [pc, #132]	; (100 <init+0x100>)
+  7c:	2101      	movs	r1, #1
+  7e:	220c      	movs	r2, #12
+  80:	2300      	movs	r3, #0
+  82:	4c20      	ldr	r4, [pc, #128]	; (104 <init+0x104>)
+  84:	47a0      	blx	r4
+  86:	481d      	ldr	r0, [pc, #116]	; (fc <init+0xfc>)
+  88:	2101      	movs	r1, #1
+  8a:	2210      	movs	r2, #16
+  8c:	2300      	movs	r3, #0
+  8e:	4c1d      	ldr	r4, [pc, #116]	; (104 <init+0x104>)
+  90:	47a0      	blx	r4
+  92:	201d      	movs	r0, #29
+  94:	4b1c      	ldr	r3, [pc, #112]	; (108 <init+0x108>)
+  96:	4798      	blx	r3
+  98:	4b11      	ldr	r3, [pc, #68]	; (e0 <init+0xe0>)
+  9a:	681b      	ldr	r3, [r3, #0]
+  9c:	481b      	ldr	r0, [pc, #108]	; (10c <init+0x10c>)
+  9e:	4619      	mov	r1, r3
+  a0:	4a1b      	ldr	r2, [pc, #108]	; (110 <init+0x110>)
+  a2:	230c      	movs	r3, #12
+  a4:	4c1b      	ldr	r4, [pc, #108]	; (114 <init+0x114>)
+  a6:	47a0      	blx	r4
+  a8:	4818      	ldr	r0, [pc, #96]	; (10c <init+0x10c>)
+  aa:	2100      	movs	r1, #0
+  ac:	f44f 1240 	mov.w	r2, #3145728	; 0x300000
+  b0:	2301      	movs	r3, #1
+  b2:	4c19      	ldr	r4, [pc, #100]	; (118 <init+0x118>)
+  b4:	47a0      	blx	r4
+  b6:	4815      	ldr	r0, [pc, #84]	; (10c <init+0x10c>)
+  b8:	2100      	movs	r1, #0
+  ba:	2200      	movs	r2, #0
+  bc:	4b17      	ldr	r3, [pc, #92]	; (11c <init+0x11c>)
+  be:	4798      	blx	r3
+  c0:	4812      	ldr	r0, [pc, #72]	; (10c <init+0x10c>)
+  c2:	f04f 31ff 	mov.w	r1, #4294967295
+  c6:	4b16      	ldr	r3, [pc, #88]	; (120 <init+0x120>)
+  c8:	4798      	blx	r3
+  ca:	4810      	ldr	r0, [pc, #64]	; (10c <init+0x10c>)
+  cc:	4b15      	ldr	r3, [pc, #84]	; (124 <init+0x124>)
+  ce:	4798      	blx	r3
+  d0:	4b15      	ldr	r3, [pc, #84]	; (128 <init+0x128>)
+  d2:	4798      	blx	r3
+  d4:	370c      	adds	r7, #12
+  d6:	46bd      	mov	sp, r7
+  d8:	bd90      	pop	{r4, r7, pc}
+  da:	bf00      	nop
+	...
+  e4:	10624dd3 	.word	0x10624dd3
+  e8:	00000000 	.word	0x00000000
+  ec:	400e1450 	.word	0x400e1450
+	...
+  fc:	400e0e00 	.word	0x400e0e00
+ 100:	400e1000 	.word	0x400e1000
+	...
+ 10c:	40038000 	.word	0x40038000
+ 110:	01312d00 	.word	0x01312d00
+	...
+
+Disassembly of section .text._Z41__static_initialization_and_destruction_0ii:
+
+00000000 <_Z41__static_initialization_and_destruction_0ii>:
+   0:	b590      	push	{r4, r7, lr}
+   2:	b085      	sub	sp, #20
+   4:	af02      	add	r7, sp, #8
+   6:	6078      	str	r0, [r7, #4]
+   8:	6039      	str	r1, [r7, #0]
+   a:	687b      	ldr	r3, [r7, #4]
+   c:	2b01      	cmp	r3, #1
+   e:	d11a      	bne.n	46 <_Z41__static_initialization_and_destruction_0ii+0x46>
+  10:	683a      	ldr	r2, [r7, #0]
+  12:	f64f 73ff 	movw	r3, #65535	; 0xffff
+  16:	429a      	cmp	r2, r3
+  18:	d115      	bne.n	46 <_Z41__static_initialization_and_destruction_0ii+0x46>
+  1a:	480c      	ldr	r0, [pc, #48]	; (4c <_Z41__static_initialization_and_destruction_0ii+0x4c>)
+  1c:	4b0c      	ldr	r3, [pc, #48]	; (50 <_Z41__static_initialization_and_destruction_0ii+0x50>)
+  1e:	4798      	blx	r3
+  20:	4b0a      	ldr	r3, [pc, #40]	; (4c <_Z41__static_initialization_and_destruction_0ii+0x4c>)
+  22:	9300      	str	r3, [sp, #0]
+  24:	480b      	ldr	r0, [pc, #44]	; (54 <_Z41__static_initialization_and_destruction_0ii+0x54>)
+  26:	490c      	ldr	r1, [pc, #48]	; (58 <_Z41__static_initialization_and_destruction_0ii+0x58>)
+  28:	220e      	movs	r2, #14
+  2a:	230e      	movs	r3, #14
+  2c:	4c0b      	ldr	r4, [pc, #44]	; (5c <_Z41__static_initialization_and_destruction_0ii+0x5c>)
+  2e:	47a0      	blx	r4
+  30:	480b      	ldr	r0, [pc, #44]	; (60 <_Z41__static_initialization_and_destruction_0ii+0x60>)
+  32:	4b07      	ldr	r3, [pc, #28]	; (50 <_Z41__static_initialization_and_destruction_0ii+0x50>)
+  34:	4798      	blx	r3
+  36:	4b0a      	ldr	r3, [pc, #40]	; (60 <_Z41__static_initialization_and_destruction_0ii+0x60>)
+  38:	9300      	str	r3, [sp, #0]
+  3a:	480a      	ldr	r0, [pc, #40]	; (64 <_Z41__static_initialization_and_destruction_0ii+0x64>)
+  3c:	490a      	ldr	r1, [pc, #40]	; (68 <_Z41__static_initialization_and_destruction_0ii+0x68>)
+  3e:	2209      	movs	r2, #9
+  40:	2309      	movs	r3, #9
+  42:	4c0a      	ldr	r4, [pc, #40]	; (6c <_Z41__static_initialization_and_destruction_0ii+0x6c>)
+  44:	47a0      	blx	r4
+  46:	370c      	adds	r7, #12
+  48:	46bd      	mov	sp, r7
+  4a:	bd90      	pop	{r4, r7, pc}
+	...
+  58:	40024000 	.word	0x40024000
+	...
+  68:	400e0800 	.word	0x400e0800
+  6c:	00000000 	.word	0x00000000
+
+Disassembly of section .text._GLOBAL__sub_I_g_APinDescription:
+
+00000000 <_GLOBAL__sub_I_g_APinDescription>:
+   0:	b580      	push	{r7, lr}
+   2:	af00      	add	r7, sp, #0
+   4:	2001      	movs	r0, #1
+   6:	f64f 71ff 	movw	r1, #65535	; 0xffff
+   a:	4b01      	ldr	r3, [pc, #4]	; (10 <_GLOBAL__sub_I_g_APinDescription+0x10>)
+   c:	4798      	blx	r3
+   e:	bd80      	pop	{r7, pc}
+  10:	00000000 	.word	0x00000000

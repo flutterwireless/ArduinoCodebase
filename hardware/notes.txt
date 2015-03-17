@@ -1,0 +1,25 @@
+
+
+
+
+
+enable hard address handling. DONE
+
+modify queue to handle RX and TX separately. DONE
+
+Process RX as soon as it occurs, and block out transmitting in this frame with canSend=false;
+
+If there is something to TX at the appropriate time in the frame, listen to the channel for activity as per our LBT algorithm.
+
+If this fails, return false. This listening can be done while writing data to fifo, but the fifo should be cleared if it fails.
+
+If it fails, retry tx on next time.
+
+Add ACK to code, which will start sending before TX devices will begin their LBT algorithm.
+
+Need addressing for ACK to behave with multiple devices. Consider true flow for packet RX.
+
+
+----
+
+change ACK behavior to auto-ack. load TX buffer with device address before entering RX. Set chip to auto TX after RX. On RX of ack, we no longer check packet index and load into our array. Since only one packet will ever be out at a time, we use the packet state to indicate that a packet is sent and awaiting ACK - setting it when ACK from the recipient is recieved or marking it failed if we hit a frequency hop/packet boundary before ACK is recieved.

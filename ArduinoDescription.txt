@@ -1,0 +1,72 @@
+
+
+ArduinoCodebase
+	/app
+	/build
+	/core
+	/hardware
+	/libraries
+
+/build contains the IDE build code. When we want to build our latest code changes into a new IDE instance, cd to this directory and run "ant clean" followed by "ant run" (or "ant build" and then "ant run")
+
+/hardware contains all the C and C++ files for Arduino. The rest of the folders are for building the IDE and we do not need to access them.
+
+most of the goodies are in the following folder:
+
+ArduinoCodebase/hardware/arduino/sam
+	/cores
+	/firmwares
+	/libraries
+	/system
+	/variants
+	boards.txt
+	platform.txt
+	programmers.txt
+
+/cores contains the main Arduino libraries, with functions for UART, SPI, interfacing with GPIO including PinMode, AnalogWrite, AnalogRead, DigitalWrite, DigitalRead, etc. This is basically where the port of the Wiring language lives. We shouldn't need to change much in here, but sometimes there are bits of code that assume more peripherals than are present for our chip.
+
+/firmwares contains the firmware image for the small AVR chip on the Due that is used for legacy serial programming. No such chip exists on the Flutter hardware, and this folder can be ignored.
+
+/libraries contains the SPI library and the 2Wire/I2C library. I don't know why these aren't in the /cores folder, but that's open source projects for ya. We probably don't need to change these, though I may have modified them originally. When we port our libraries over to the latest version of Arduino we can do a diff here and see if any code changes were needed, but for now we will use the libraries as is as long as they work.
+
+/system contains the original CMSIS library as well as the Arduino definitions that translate from CMSIS terminology to Arduino terminology. More on this below.
+
+/variants contains the board definition files for Arduino, including the existing definitions for the Arduino Due (as a reference) and the definitions for Flutter. (more info below)
+
+boards.txt contains the programming definitions for all of the boards we want to program.
+
+platform.txt contains instructions for the compiler.
+
+programmers.txt is an empty file, I think for legacy purposes.
+
+
+ArduinoCodebase/hardware/arduino/sam/system
+	/CMSIS
+	/libsam
+
+/CMSIS contains all of the low level definitions for the chip as provided by ATMEL. Apparently this is not the latest version of CMSIS, but the version that was current when Arduino began porting their code a few years back.
+
+/libsam contains the build_gcc folder for building the core system library (libsam), as well as low level hardware driver code to interface between CMSIS and Arduino core.
+
+ArduinoCodebase/hardware/arduino/sam/variants/flutter
+	/build_gcc
+	variant.h
+	variant.cpp
+
+/build_gcc contains the board specific makefiles, and is the second location where we build our code with make.
+variant.cpp and variant.h contain board startup code and a large pinmap that defines our pin layout.
+
+to build the system:
+cd ArduinoCodebase/hardware/arduino/sam/system/libsam
+make clean
+make
+cd ArduinoCodebase/hardware/arduino/sam/variants/flutter/build_gcc
+make clean
+make
+cd ArduinoCodebase/build
+ant clean
+ant run
+
+After this, an IDE with the latest changes will start up.
+
+The Arduino IDE uses Sketches in a directory that by default is called Arduino (specified in the preferences of the IDE and persistent across builds). Inside the Arduino folder are folders that contain user Sketches (each sketch is in a folder with the same name as the sketch). There is also a folder in the Arduino directory called libraries, and our Flutter library code goes there.

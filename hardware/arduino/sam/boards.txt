@@ -1,0 +1,67 @@
+
+arduino_due_x_dbg.name=Arduino Due (Programming Port)
+arduino_due_x_dbg.vid.0=0x2341
+arduino_due_x_dbg.pid.0=0x003d
+arduino_due_x_dbg.upload.tool=bossac
+arduino_due_x_dbg.upload.protocol=sam-ba
+arduino_due_x_dbg.upload.maximum_size=524288
+arduino_due_x_dbg.upload.use_1200bps_touch=true
+arduino_due_x_dbg.upload.wait_for_upload_port=false
+arduino_due_x_dbg.upload.native_usb=false
+arduino_due_x_dbg.build.mcu=cortex-m3
+arduino_due_x_dbg.build.f_cpu=84000000L
+arduino_due_x_dbg.build.usb_product="Arduino Due"
+arduino_due_x_dbg.build.board=SAM_DUE
+arduino_due_x_dbg.build.core=arduino
+arduino_due_x_dbg.build.extra_flags=-D__SAM3X8E__ -mthumb {build.usb_flags}
+arduino_due_x_dbg.build.ldscript=linker_scripts/gcc/flash.ld
+arduino_due_x_dbg.build.variant=arduino_due_x
+arduino_due_x_dbg.build.variant_system_lib=libsam_sam3x8e_gcc_rel.a
+arduino_due_x_dbg.build.vid=0x2341
+arduino_due_x_dbg.build.pid=0x003e
+
+flutter.name=Flutter Pre-production hardware
+flutter.vid.0=0x2341
+flutter.pid.0=0x003e
+flutter.upload.tool=bossac
+flutter.upload.protocol=sam-ba
+flutter.upload.maximum_size=524288
+flutter.upload.use_1200bps_touch=false
+flutter.upload.wait_for_upload_port=false
+flutter.upload.native_usb=true
+flutter.build.mcu=cortex-m3
+flutter.build.f_cpu=64000000L
+flutter.build.usb_product="Flutter Pre-release"
+flutter.build.board=FLUTTER
+flutter.build.core=arduino
+flutter.build.extra_flags=-D__SAM3S1A__ -mthumb -g
+flutter.build.ldscript=linker_scripts/gcc/flash.ld
+flutter.build.variant=flutter
+flutter.build.variant_system_lib=libsam_sam3s1a_gcc_rel.a
+flutter.build.vid=0x2341
+flutter.build.pid=0x003e
+
+
+flutter_r2.name=Flutter Basic
+flutter_r2.vid.0=0x2341
+flutter_r2.pid.0=0x003e
+flutter_r2.upload.tool=bossac
+flutter_r2.upload.protocol=sam-ba
+flutter_r2.upload.maximum_size=524288
+flutter_r2.upload.use_1200bps_touch=false
+flutter_r2.upload.wait_for_upload_port=false
+flutter_r2.upload.native_usb=true
+flutter_r2.build.mcu=cortex-m3
+flutter_r2.build.f_cpu=64000000L
+flutter_r2.build.usb_product="Flutter Basic"
+flutter_r2.build.board=FLUTTER_R2
+flutter_r2.build.core=arduino
+flutter_r2.build.extra_flags=-D__SAM3S1A__ -mthumb -g
+flutter_r2.build.ldscript=linker_scripts/gcc/flash.ld
+flutter_r2.build.variant=flutter_r2
+flutter_r2.build.variant_system_lib=libsam_sam3s1a_gcc_rel.a
+flutter_r2.build.vid=0x2341
+flutter_r2.build.pid=0x003e
+
+
+
