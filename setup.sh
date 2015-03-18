@@ -9,7 +9,7 @@ function main() {
 	installArmToolchain
 	fixPortIssue
 
-	copyFlutterLibraryFromBundle #TODO use git instead
+	#copyFlutterLibraryFromBundle #TODO use git instead
 	#cloneFlutterLibrary #clone flutter from git
 
 	buildIDE
