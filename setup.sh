@@ -46,10 +46,10 @@ function fixPortIssue() {
 function buildIDE() {
 	if [ ! -e ./arduino ]
 	then
-		sudo -u $user ant -f $SCRIPT_DIR/ArduinoIDEFlutter/build/build.xml
+		sudo -u $user ant -f $SCRIPT_DIR/build/build.xml
 		if [ $? -eq 0 ]
 		then
-			ln -s $SCRIPT_DIR/ArduinoIDEFlutter/build/linux/work/arduino .
+			ln -s $SCRIPT_DIR/build/linux/work/arduino .
 			echo " $(tput setaf 2)installed$(tput sgr0)   Arduino IDE Symbolic Link"
 		else
 			return 1
