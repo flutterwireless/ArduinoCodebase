@@ -43,20 +43,34 @@ function fixPortIssue() {
 	fi
 }
 
+function rebuildIDE()
+{
+        sudo -u $user ant -f $SCRIPT_DIR/build/build.xml
+        if [ $? -eq 0 ]
+        then
+                echo " $(tput setaf 2)re-installed$(tput sgr0)"
+        else
+                return 1
+        fi
+
+}
+
 function buildIDE() {
-	if [ ! -e ./arduino ]
-	then
-		sudo -u $user ant -f $SCRIPT_DIR/build/build.xml
-		if [ $? -eq 0 ]
-		then
-			ln -s $SCRIPT_DIR/build/linux/work/arduino .
-			echo " $(tput setaf 2)installed$(tput sgr0)   Arduino IDE Symbolic Link"
-		else
-			return 1
-		fi
-	else
-		echo " $(tput setaf 2)found$(tput sgr0)   Arduino IDE Symbolic Link"
-	fi
+        if [ ! -e ./arduino ]
+        then
+                sudo -u $user ant -f $SCRIPT_DIR/build/build.xml
+                if [ $? -eq 0 ]
+                then
+                        ln -s $SCRIPT_DIR/build/linux/work/arduino .
+                        echo " $(tput setaf 2)installed$(tput sgr0)   Arduino IDE Symbolic Link"
+                else
+                        return 1
+                fi
+        else
+                echo " $(tput setaf 2)found$(tput sgr0)   Arduino IDE Symbolic Link"
+                promptYesOrDie "Arduino IDE Symbolic Link already installed, do you want to perform a reinstall?"
+                rebuildIDE
+        fi
 }
 
 function copyFlutterLibraryFromBundle() {
