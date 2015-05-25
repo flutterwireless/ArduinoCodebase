@@ -70,6 +70,8 @@ function buildIDE() {
         if [ ! -e ./arduino ]
         then
 		if [[ `uname -s` =~ ^CYGWIN* ]]; then
+			chmod +x ./build/windows/launcher/launch4j/bin/ld.exe
+			chmod +x ./build/windows/launcher/launch4j/bin/windres.exe
 			ant -f ./build/build.xml
 		else		
                 	sudo -u $user ant -f $SCRIPT_DIR/build/build.xml
