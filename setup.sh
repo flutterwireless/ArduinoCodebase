@@ -1,13 +1,24 @@
 #!/bin/bash
 
-SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+if ! [[ `uname -s` =~ ^CYGWIN* ]]; then
+	SCRIPT_DIR="$(pwd)"
+else
+	SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+fi
+
 user=$(who am i | awk '{print $1}') #gets the original user (even if sudo is used)
 
 function main() {
-	requireSudo
+	if ! [[ `uname -s` =~ ^CYGWIN* ]]; then
+		requireSudo
+	fi
+
 	installRequiredPackages
 	installArmToolchain
-	fixPortIssue
+	
+	if ! [[ `uname -s` =~ ^CYGWIN* ]]; then
+		fixPortIssue
+	fi
 
 	#copyFlutterLibraryFromBundle #TODO use git instead
 	#cloneFlutterLibrary #clone flutter from git
@@ -58,10 +69,20 @@ function rebuildIDE()
 function buildIDE() {
         if [ ! -e ./arduino ]
         then
-                sudo -u $user ant -f $SCRIPT_DIR/build/build.xml
+		if [[ `uname -s` =~ ^CYGWIN* ]]; then
+			ant -f ./build/build.xml
+		else		
+                	sudo -u $user ant -f $SCRIPT_DIR/build/build.xml
+		fi
+
                 if [ $? -eq 0 ]
                 then
-                        ln -s $SCRIPT_DIR/build/linux/work/arduino .
+			if [[ `uname -s` =~ ^CYGWIN* ]]; then
+				ln -s ./build/linux/work/arduino .
+			else
+                        	ln -s $SCRIPT_DIR/build/linux/work/arduino .
+			fi
+
                         echo " $(tput setaf 2)installed$(tput sgr0)   Arduino IDE Symbolic Link"
                 else
                         return 1
@@ -76,7 +97,12 @@ function buildIDE() {
 function copyFlutterLibraryFromBundle() {
 	sketchbook=`getSketchbookPath`
 	librariesFolder="$sketchbook/libraries"
-	sudo -u $user mkdir -p $librariesFolder
+	if [[ `uname -s` =~ ^CYGWIN* ]]; then
+		mkdir -p $librariesFolder
+	else
+		sudo -u $user mkdir -p $librariesFolder
+	fi
+
 	flutterFolder="$librariesFolder/Flutter"
 	if [ -e "$flutterFolder" ]
 	then
@@ -84,8 +110,11 @@ function copyFlutterLibraryFromBundle() {
 	else
 		promptYesOrDie "The Flutter library for Arduino will be copied into $librariesFolder."
 		echo " $(tput setaf 4)installing$(tput sgr0) Flutter"
-
-		sudo -u $user cp -r $SCRIPT_DIR/Flutter $librariesFolder/
+		if [[ `uname -s` =~ ^CYGWIN* ]]; then
+			cp -r ./Flutter $librariesFolder/
+		else
+			sudo -u $user cp -r $SCRIPT_DIR/Flutter $librariesFolder/
+		fi
 	fi
 }
 
@@ -100,8 +129,12 @@ function cloneFlutterLibrary() {
 	else
 		promptYesOrDie "The Flutter library for Arduino will be cloned into $librariesFolder."
 		echo " $(tput setaf 4)installing$(tput sgr0) Flutter"
-
-		sudo -u $user git clone $flutterGit
+		
+		if [[ `uname -s` =~ ^CYGWIN* ]]; then
+			git clone $flutterGit
+		else
+			sudo -u $user git clone $flutterGit
+		fi
 	fi
 }
 
@@ -126,19 +159,25 @@ function promptYesOrDie() {
 }
 
 function installArmToolchain() {
-	dpkg -s gcc-arm-none-eabi > /dev/null 2>&1
-	if [[ $? -ne 0 ]]
-	then
-		repo=ppa:terry.guo/gcc-arm-embedded
-		echo "Flutter requires the ARM toolchain."
-		echo "To install it, $repo will be added to your sources.lst"
-		promptYesOrDie "Install the ARM toolchain?"
-		echo " $(tput setaf 4)installing$(tput sgr0) gcc-arm-none-eabi"
-		add-apt-repository $repo
-		apt-get update
-		apt-get install gcc-arm-none-eabi -y
+	if [[ `uname -s` =~ ^CYGWIN* ]]; then
+		if ! eabi_loc="$(type -P arm-none-eabi-gcc)" || [ -z "$eabi_loc" ]; then
+			echo "Please install an ARM GCC Toolchain for Cygwin"
+		fi		
 	else
-		echo " $(tput setaf 2)found$(tput sgr0)   gcc-arm-none-eabi"
+		dpkg -s gcc-arm-none-eabi > /dev/null 2>&1
+		if [[ $? -ne 0 ]]
+		then
+			repo=ppa:terry.guo/gcc-arm-embedded
+			echo "Flutter requires the ARM toolchain."
+			echo "To install it, $repo will be added to your sources.lst"
+			promptYesOrDie "Install the ARM toolchain?"
+			echo " $(tput setaf 4)installing$(tput sgr0) gcc-arm-none-eabi"
+			add-apt-repository $repo
+			apt-get update
+			apt-get install gcc-arm-none-eabi -y
+		else
+			echo " $(tput setaf 2)found$(tput sgr0)   gcc-arm-none-eabi"
+		fi
 	fi
 	
 }
