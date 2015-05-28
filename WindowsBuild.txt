@@ -1,0 +1,24 @@
+1.	Download Cygwin x86
+2.	Select the following packages:
+a.	git
+b.	make
+c.	mingw-gcc-core
+d.	gcc-g++
+e.	mingw-gcc-g++
+f.	coreutils
+g.	nano
+h.	ncurses
+i.	apt-cyg – Apt/dpkg support
+3.	Download and install ant (http://ant.apache.org/) in Windows
+a.	Copy to C:\ant
+4.	Download and install a Java JDK in Windows as well.  Ensure that the JAVA_HOME in Cygwin points to this location
+5.	Download and install the Windows GCC ARM Embedded toolchain (https://launchpad.net/gcc-arm-embedded/4.7/4.7-2013-q3-update/+download/gcc-arm-none-eabi-4_7-2013q3-20130916-win32.exe)
+6.	Enter the following entries in ~/.bashrc at the bottom
+a.	export JAVA_HOME="/cygdrive/c/Program Files (x86)/Java/jdk1.8.0_45"
+b.	export ANT_HOME=/cygdrive/c/ant/
+c.	PATH=$PATH:/cygdrive/c/ant/bin/
+d.	PATH=$PATH:"/cygdrive/c/Program Files (x86)/Java/jdk1.8.0_45/bin"
+e.	PATH=$PATH:"/cygdrive/c/Program Files (x86)/GNU Tools ARM Embedded/4.7 2013q3/arm-none-eabi/bin"
+7.	Clone the ArduinoCodebase modifications inside Cygwin
+8.	Change to the ArdiunoCodebase/libraries directory and clone the FlutterWireless repository there.
+9.	Run setup.sh
