@@ -6,7 +6,7 @@ This is a modified version of the Arduino IDE version 1.5.5-r2. To see which cha
 [Windows](http://flutterwireless.com/files/FlutterWindows.zip)
 
 [Linux](http://flutterwireless.com/files/FlutterLinux.zip)
-www.flutterwireless.com/files/Arduino-1.5.5-r2.zip
+
 
 We recommend "Meld" as a diff tool if you do not already have one.
 
