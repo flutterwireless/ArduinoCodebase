@@ -49,7 +49,8 @@ static void __initialize() {
 	NVIC_ClearPendingIRQ(PIOB_IRQn);
 	NVIC_SetPriority(PIOB_IRQn, 15); //FLUTTER: changed priority to a level lower than that of systick.
 	NVIC_EnableIRQ(PIOB_IRQn);
-	/*
+
+#ifndef __SAM3S1A__
 	pmc_enable_periph_clk(ID_PIOC);
 	NVIC_DisableIRQ(PIOC_IRQn);
 	NVIC_ClearPendingIRQ(PIOC_IRQn);
@@ -60,7 +61,8 @@ pmc_enable_periph_clk(ID_PIOD);
 	NVIC_DisableIRQ(PIOD_IRQn);
 	NVIC_ClearPendingIRQ(PIOD_IRQn);
 	NVIC_SetPriority(PIOD_IRQn, 0);
-	NVIC_EnableIRQ(PIOD_IRQn);*/
+	NVIC_EnableIRQ(PIOD_IRQn);
+#endif
 }
 
 
@@ -91,10 +93,12 @@ void attachInterrupt(uint32_t pin, void (*callback)(void), uint32_t mode)
 		callbacksPioA[pos] = callback;
 	if (pio == PIOB)
 		callbacksPioB[pos] = callback;
-	//if (pio == PIOC)
-	//	callbacksPioC[pos] = callback;
-	//if (pio == PIOD)
-	//	callbacksPioD[pos] = callback;
+#ifndef __SAM3S1A__
+	if (pio == PIOC)
+		callbacksPioC[pos] = callback;
+	if (pio == PIOD)
+		callbacksPioD[pos] = callback;
+#endif
 
 	// Configure the interrupt mode
 	if (mode == CHANGE) {
@@ -168,7 +172,8 @@ void PIOB_Handler(void) {
 			callbacksPioB[i]();
 	}
 }
-/*
+
+#ifndef __SAM3S1A__
 void PIOC_Handler(void) {
 	uint32_t isr = PIOC->PIO_ISR;
 	uint32_t i;
@@ -189,16 +194,14 @@ void PIOD_Handler(void) {
 		if (callbacksPioD[i])
 			callbacksPioD[i]();
 	}
-}*/
-
-
+}
+#endif //SAM3S1A
 
 void softInterrupt()
 {
 	_swInterrupt=1;
 	 NVIC->STIR = PIOA_IRQn; //fire soft interrupt	
 }
-
 
 #ifdef __cplusplus
 }

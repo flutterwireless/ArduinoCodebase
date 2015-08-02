@@ -109,6 +109,7 @@
 #define CDC_V1_10                               0x0110
 #define CDC_COMMUNICATION_INTERFACE_CLASS       0x02
 
+
 #define CDC_CALL_MANAGEMENT                     0x01
 #define CDC_ABSTRACT_CONTROL_MODEL              0x02
 #define CDC_HEADER                              0x00
@@ -309,3 +310,54 @@ _Pragma("pack()")
 #define D_CDCCS4(_subtype,_d0)		{ 4, 0x24, _subtype, _d0 }
 
 #endif
+
+#ifdef __SAM3S1A__
+/** Atmel helper functions from compiler.h used in udp_device.h*/
+typedef uint32_t                U32;  //!< 32-bit unsigned integer.
+#if (defined __GNUC__) || (defined __CC_ARM)
+#   define ctz(u)              __builtin_ctz(u)
+#else
+#   define ctz(u)              ((u) & (1ul <<  0) ?  0 : \
+                                (u) & (1ul <<  1) ?  1 : \
+                                (u) & (1ul <<  2) ?  2 : \
+                                (u) & (1ul <<  3) ?  3 : \
+                                (u) & (1ul <<  4) ?  4 : \
+                                (u) & (1ul <<  5) ?  5 : \
+                                (u) & (1ul <<  6) ?  6 : \
+                                (u) & (1ul <<  7) ?  7 : \
+                                (u) & (1ul <<  8) ?  8 : \
+                                (u) & (1ul <<  9) ?  9 : \
+                                (u) & (1ul << 10) ? 10 : \
+                                (u) & (1ul << 11) ? 11 : \
+                                (u) & (1ul << 12) ? 12 : \
+                                (u) & (1ul << 13) ? 13 : \
+                                (u) & (1ul << 14) ? 14 : \
+                                (u) & (1ul << 15) ? 15 : \
+                                (u) & (1ul << 16) ? 16 : \
+                                (u) & (1ul << 17) ? 17 : \
+                                (u) & (1ul << 18) ? 18 : \
+                                (u) & (1ul << 19) ? 19 : \
+                                (u) & (1ul << 20) ? 20 : \
+                                (u) & (1ul << 21) ? 21 : \
+                                (u) & (1ul << 22) ? 22 : \
+                                (u) & (1ul << 23) ? 23 : \
+                                (u) & (1ul << 24) ? 24 : \
+                                (u) & (1ul << 25) ? 25 : \
+                                (u) & (1ul << 26) ? 26 : \
+                                (u) & (1ul << 27) ? 27 : \
+                                (u) & (1ul << 28) ? 28 : \
+                                (u) & (1ul << 29) ? 29 : \
+                                (u) & (1ul << 30) ? 30 : \
+                                (u) & (1ul << 31) ? 31 : \
+                                32)
+#endif
+#define Rd_bits( value, mask)        ((value) & (mask))
+#define Rd_bitfield( value, mask)           (Rd_bits( value, mask) >> ctz(mask))
+#define Tst_bits( value, mask)  (Rd_bits(value, mask) != 0)
+#define Wr_bitfield(lvalue, mask, bitfield) (Wr_bits(lvalue, mask, (U32)(bitfield) << ctz(mask)))
+#define Wr_bits(lvalue, mask, bits)  ((lvalue) = ((lvalue) & ~(mask)) |\
+                                                 ((bits  ) &  (mask)))
+#define Set_bits(lvalue, mask)  ((lvalue) |=  (mask))
+#define Clr_bits(lvalue, mask)  ((lvalue) &= ~(mask))
+#endif //SAM3S1A
+

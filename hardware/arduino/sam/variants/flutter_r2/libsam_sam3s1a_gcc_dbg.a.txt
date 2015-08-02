@@ -1,54 +1,103 @@
 
-adc12_sam3u.o:
+tc.o:
+         U __assert_func
+00000000 r __func__.5989
+00000000 r __func__.5995
+00000000 r __func__.6001
+00000000 T TC_Configure
+00000000 T TC_FindMckDivisor
+00000000 T TC_GetStatus
+00000000 T TC_ReadCV
+00000000 T TC_SetRA
+00000000 T TC_SetRB
+00000000 T TC_SetRC
+00000000 T TC_Start
+00000000 T TC_Stop
 
-adc.o:
-00000000 T adc_configure_power_save
-00000000 T adc_configure_sequence
-00000000 T adc_configure_timing
-00000000 T adc_configure_trigger
-00000000 T adc_disable_all_channel
-00000000 T adc_disable_anch
-00000000 T adc_disable_channel
-00000000 T adc_disable_channel_differential_input
-00000000 T adc_disable_channel_input_offset
-00000000 T adc_disable_interrupt
-00000000 T adc_disable_tag
-00000000 T adc_disable_ts
-00000000 T adc_enable_all_channel
-00000000 T adc_enable_anch
-00000000 T adc_enable_channel
-00000000 T adc_enable_channel_differential_input
-00000000 T adc_enable_channel_input_offset
-00000000 T adc_enable_interrupt
-00000000 T adc_enable_tag
-00000000 T adc_enable_ts
-00000000 T adc_get_actual_adc_clock
-00000000 T adc_get_channel_status
-00000000 T adc_get_channel_value
-00000000 T adc_get_comparison_mode
-00000000 T adc_get_interrupt_mask
-00000000 T adc_get_latest_value
-00000000 T adc_get_overrun_status
-00000000 T adc_get_pdc_base
-00000000 T adc_get_status
-00000000 T adc_get_tag
-00000000 T adc_get_writeprotect_status
-00000000 T adc_init
-00000000 T adc_set_bias_current
-00000000 T adc_set_channel_input_gain
-00000000 T adc_set_comparison_channel
-00000000 T adc_set_comparison_mode
-00000000 T adc_set_comparison_window
-00000000 T adc_set_resolution
-00000000 T adc_set_writeprotect
-00000000 T adc_start
-00000000 T adc_start_sequencer
-00000000 T adc_stop
-00000000 T adc_stop_sequencer
+interrupt_sam_nvic.o:
+00000000 D g_interrupt_enabled
 
-can.o:
+rtt.o:
+         U __assert_func
+00000000 r __func__.5994
+00000000 r __func__.6002
+00000000 T RTT_EnableIT
+00000000 T RTT_GetStatus
+00000000 T RTT_GetTime
+00000000 T RTT_SetAlarm
+00000000 T RTT_SetPrescaler
 
-dacc.o:
+uotghs_device.o:
+
+uotghs.o:
+00000000 B gpf_isr
+00000000 T UDP_Handler
+
+twi.o:
+         U __assert_func
+00000000 r __func__.6351
+00000000 r __func__.6366
+00000000 r __func__.6370
+00000000 r __func__.6377
+00000000 r __func__.6381
+00000000 r __func__.6386
+00000000 r __func__.6394
+00000000 r __func__.6408
+00000000 r __func__.6413
+00000000 r __func__.6417
+00000000 r __func__.6422
+00000000 r __func__.6426
+00000000 T TWI_ByteReceived
+00000000 T TWI_ByteSent
+00000000 T TWI_ConfigureMaster
+00000000 T TWI_ConfigureSlave
+00000000 T TWI_DisableIt
+00000000 T TWI_EnableIt
+00000000 T TWI_GetMaskedStatus
+00000000 T TWI_GetStatus
+00000000 T TWI_ReadByte
+00000000 T TWI_SendSTOPCondition
+00000000 T TWI_StartRead
+00000000 T TWI_StartWrite
+00000000 T TWI_Stop
+00000000 T TWI_TransferComplete
+00000000 T TWI_WriteByte
+
+pio.o:
+00000000 T PIO_Clear
+00000000 T PIO_Configure
+00000000 T PIO_DisableInterrupt
+00000000 T PIO_Get
+00000000 T PIO_GetOutputDataStatus
+00000000 T PIO_PullUp
+00000000 T PIO_Set
+00000000 T PIO_SetDebounceFilter
+00000000 T PIO_SetInput
+00000000 T PIO_SetOutput
+00000000 T PIO_SetPeripheral
+
+udphs.o:
+
+spi.o:
+         U pmc_enable_periph_clk
+00000000 T SPI_Configure
+00000000 T SPI_ConfigureNPCS
+00000000 T SPI_Disable
+00000000 T SPI_DisableIt
+00000000 T SPI_Enable
+00000000 T SPI_EnableIt
+00000000 T SPI_GetStatus
+00000000 T SPI_IsFinished
+00000000 T SPI_PdcDisableRx
+00000000 T SPI_PdcDisableTx
+00000000 T SPI_PdcEnableRx
+00000000 T SPI_PdcEnableTx
+00000000 T SPI_PdcSetRx
+00000000 T SPI_PdcSetTx
+00000000 T SPI_Read
+00000000 T SPI_ReadBuffer
+00000000 T SPI_Write
+00000000 T SPI_WriteBuffer
 
 efc.o:
 00000000 T efc_disable_frdy_interrupt
@@ -64,29 +113,9 @@ efc.o:
 00000000 T efc_set_flash_access_mode
 00000000 T efc_set_wait_state
 000000a4 T efc_write_fmr
-00000000 b iap_perform_command.6320
+00000000 b iap_perform_command.6246
 
-emac.o:
-
-gpbr.o:
-00000000 T gpbr_read
-00000000 T gpbr_write
-
-interrupt_sam_nvic.o:
-00000000 D g_interrupt_enabled
-
-pio.o:
-00000000 T PIO_Clear
-00000000 T PIO_Configure
-00000000 T PIO_DisableInterrupt
-00000000 T PIO_Get
-00000000 T PIO_GetOutputDataStatus
-00000000 T PIO_PullUp
-00000000 T PIO_Set
-00000000 T PIO_SetDebounceFilter
-00000000 T PIO_SetInput
-00000000 T PIO_SetOutput
-00000000 T PIO_SetPeripheral
+dacc.o:
 
 pmc.o:
 00000000 T pmc_clr_fast_startup_input
@@ -141,17 +170,38 @@ pmc.o:
 00000000 T pmc_switch_udpck_to_pllack
 00000000 T pmc_switch_udpck_to_pllbck
 
+emac.o:
+
+adc12_sam3u.o:
+
+uotghs_host.o:
+
+rstc.o:
+00000000 T rstc_disable_user_reset
+00000000 T rstc_disable_user_reset_interrupt
+00000000 T rstc_enable_user_reset
+00000000 T rstc_enable_user_reset_interrupt
+00000000 T rstc_get_reset_cause
+00000000 T rstc_get_status
+00000000 T rstc_reset_extern
+00000000 T rstc_set_external_reset
+00000000 T rstc_start_software_reset
+
+trng.o:
+
+can.o:
+
 pwmc.o:
          U __assert_func
 00000000 t FindClockConfiguration
-00000000 r __func__.6052
-00000000 r __func__.6063
-00000000 r __func__.6078
-00000000 r __func__.6089
-00000000 r __func__.6100
-00000000 r __func__.6107
-00000000 r __func__.6191
-00000000 r __func__.6197
+00000000 r __func__.5990
+00000000 r __func__.6001
+00000000 r __func__.6016
+00000000 r __func__.6027
+00000000 r __func__.6038
+00000000 r __func__.6045
+00000000 r __func__.6129
+00000000 r __func__.6135
 00000000 T PWMC_ConfigureChannel
 00000000 T PWMC_ConfigureChannelExt
 00000000 T PWMC_ConfigureClocks
@@ -178,22 +228,11 @@ pwmc.o:
 00000000 T PWMC_SetSyncChannelUpdateUnlock
 00000000 T PWMC_WriteBuffer
 
-rstc.o:
-00000000 T rstc_disable_user_reset
-00000000 T rstc_disable_user_reset_interrupt
-00000000 T rstc_enable_user_reset
-00000000 T rstc_enable_user_reset_interrupt
-00000000 T rstc_get_reset_cause
-00000000 T rstc_get_status
-00000000 T rstc_reset_extern
-00000000 T rstc_set_external_reset
-00000000 T rstc_start_software_reset
-
 rtc.o:
          U __assert_func
-00000000 r __func__.6049
-00000000 r __func__.6058
-00000000 r __func__.6063
+00000000 r __func__.5987
+00000000 r __func__.5996
+00000000 r __func__.6001
 00000000 T RTC_ClearSCCR
 00000000 T RTC_DisableIt
 00000000 T RTC_EnableIt
@@ -207,36 +246,15 @@ rtc.o:
 00000000 T RTC_SetTime
 00000000 T RTC_SetTimeAlarm
 
-rtt.o:
-         U __assert_func
-00000000 r __func__.6056
-00000000 r __func__.6064
-00000000 T RTT_EnableIT
-00000000 T RTT_GetStatus
-00000000 T RTT_GetTime
-00000000 T RTT_SetAlarm
-00000000 T RTT_SetPrescaler
-
-spi.o:
-         U pmc_enable_periph_clk
-00000000 T SPI_Configure
-00000000 T SPI_ConfigureNPCS
-00000000 T SPI_Disable
-00000000 T SPI_DisableIt
-00000000 T SPI_Enable
-00000000 T SPI_EnableIt
-00000000 T SPI_GetStatus
-00000000 T SPI_IsFinished
-00000000 T SPI_PdcDisableRx
-00000000 T SPI_PdcDisableTx
-00000000 T SPI_PdcEnableRx
-00000000 T SPI_PdcEnableTx
-00000000 T SPI_PdcSetRx
-00000000 T SPI_PdcSetTx
-00000000 T SPI_Read
-00000000 T SPI_ReadBuffer
-00000000 T SPI_Write
-00000000 T SPI_WriteBuffer
+timetick.o:
+00000000 b _dwTickCount
+00000000 T GetTickCount
+00000000 t NVIC_SetPriority
+00000000 T Sleep
+00000000 t SysTick_Config
+00000000 T TimeTick_Configure
+00000000 T TimeTick_Increment
+00000000 T Wait
 
 ssc.o:
          U memset
@@ -279,76 +297,18 @@ ssc.o:
 00000000 T ssc_write
 00000000 T ssc_write_sync_data
 
-tc.o:
-         U __assert_func
-00000000 r __func__.6051
-00000000 r __func__.6057
-00000000 r __func__.6063
-00000000 T TC_Configure
-00000000 T TC_FindMckDivisor
-00000000 T TC_GetStatus
-00000000 T TC_ReadCV
-00000000 T TC_SetRA
-00000000 T TC_SetRB
-00000000 T TC_SetRC
-00000000 T TC_Start
-00000000 T TC_Stop
-
-timetick.o:
-00000000 b _dwTickCount
-00000000 T GetTickCount
-00000000 t NVIC_SetPriority
-00000000 T Sleep
-00000000 t SysTick_Config
-00000000 T TimeTick_Configure
-00000000 T TimeTick_Increment
-00000000 T Wait
-
-trng.o:
-
-twi.o:
-         U __assert_func
-00000000 r __func__.6424
-00000000 r __func__.6439
-00000000 r __func__.6443
-00000000 r __func__.6450
-00000000 r __func__.6454
-00000000 r __func__.6459
-00000000 r __func__.6467
-00000000 r __func__.6481
-00000000 r __func__.6486
-00000000 r __func__.6490
-00000000 r __func__.6495
-00000000 r __func__.6499
-00000000 T TWI_ByteReceived
-00000000 T TWI_ByteSent
-00000000 T TWI_ConfigureMaster
-00000000 T TWI_ConfigureSlave
-00000000 T TWI_DisableIt
-00000000 T TWI_EnableIt
-00000000 T TWI_GetMaskedStatus
-00000000 T TWI_GetStatus
-00000000 T TWI_ReadByte
-00000000 T TWI_SendSTOPCondition
-00000000 T TWI_StartRead
-00000000 T TWI_StartWrite
-00000000 T TWI_Stop
-00000000 T TWI_TransferComplete
-00000000 T TWI_WriteByte
-
 udp.o:
 
-udphs.o:
-
-uotghs.o:
-
-uotghs_device.o:
-
-uotghs_host.o:
+wdt.o:
+00000000 T WDT_Disable
+00000000 T WDT_Enable
+00000000 T WDT_GetPeriod
+00000000 T WDT_GetStatus
+00000000 T WDT_Restart
 
 usart.o:
          U __assert_func
-00000000 r __func__.6339
+00000000 r __func__.6265
 00000000 T USART_Configure
 00000000 T USART_DisableIt
 00000000 T USART_EnableIt
@@ -365,12 +325,54 @@ usart.o:
 00000000 T USART_Write
 00000000 T USART_WriteBuffer
 
-wdt.o:
-00000000 T WDT_Disable
-00000000 T WDT_Enable
-00000000 T WDT_GetPeriod
-00000000 T WDT_GetStatus
-00000000 T WDT_Restart
+adc.o:
+00000000 T adc_configure_power_save
+00000000 T adc_configure_sequence
+00000000 T adc_configure_timing
+00000000 T adc_configure_trigger
+00000000 T adc_disable_all_channel
+00000000 T adc_disable_anch
+00000000 T adc_disable_channel
+00000000 T adc_disable_channel_differential_input
+00000000 T adc_disable_channel_input_offset
+00000000 T adc_disable_interrupt
+00000000 T adc_disable_tag
+00000000 T adc_disable_ts
+00000000 T adc_enable_all_channel
+00000000 T adc_enable_anch
+00000000 T adc_enable_channel
+00000000 T adc_enable_channel_differential_input
+00000000 T adc_enable_channel_input_offset
+00000000 T adc_enable_interrupt
+00000000 T adc_enable_tag
+00000000 T adc_enable_ts
+00000000 T adc_get_actual_adc_clock
+00000000 T adc_get_channel_status
+00000000 T adc_get_channel_value
+00000000 T adc_get_comparison_mode
+00000000 T adc_get_interrupt_mask
+00000000 T adc_get_latest_value
+00000000 T adc_get_overrun_status
+00000000 T adc_get_pdc_base
+00000000 T adc_get_status
+00000000 T adc_get_tag
+00000000 T adc_get_writeprotect_status
+00000000 T adc_init
+00000000 T adc_set_bias_current
+00000000 T adc_set_channel_input_gain
+00000000 T adc_set_comparison_channel
+00000000 T adc_set_comparison_mode
+00000000 T adc_set_comparison_window
+00000000 T adc_set_resolution
+00000000 T adc_set_writeprotect
+00000000 T adc_start
+00000000 T adc_start_sequencer
+00000000 T adc_stop
+00000000 T adc_stop_sequencer
+
+gpbr.o:
+00000000 T gpbr_read
+00000000 T gpbr_write
 
 system_sam3s.o:
 00000000 D SystemCoreClock

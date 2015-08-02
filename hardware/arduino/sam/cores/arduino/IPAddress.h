@@ -63,7 +63,9 @@ public:
     virtual size_t printTo(Print& p) const;
 
     friend class EthernetClass;
-   // friend class UDP;
+#ifndef __SAM3S1A__
+    friend class UDP;
+#endif
     friend class Client;
     friend class Server;
     friend class DhcpClass;

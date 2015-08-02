@@ -4,7 +4,9 @@ variant.o:
          U adc_configure_trigger
          U adc_disable_all_channel
          U adc_disable_interrupt
+         U adc_enable_tag
          U adc_init
+         U adc_start
          U analogOutputInit
          U digitalWrite
 00000000 R g_APinDescription

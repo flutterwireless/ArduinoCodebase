@@ -89,6 +89,23 @@ extern "C" {
 /*
  * Pins descriptions
  */
+ /*
+ typedef struct _PinDescription
+{
+  Pio* pPort ;
+  uint32_t ulPin ;
+  uint32_t ulPeripheralId ;
+  EPioType ulPinType ;
+  uint32_t ulPinConfiguration ;
+  uint32_t ulPinAttribute ;
+  EAnalogChannel ulAnalogChannel ; // Analog pin in the Arduino context (label on the board) 
+  EAnalogChannel ulADCChannelNumber ; // ADC Channel number in the SAM device 
+  EPWMChannel ulPWMChannel ;
+  ETCChannel ulTCChannel ;
+} PinDescription ;
+*/
+
+
 extern const PinDescription g_APinDescription[]=
 {
   // 0 .. 53 - Digital pins
@@ -105,8 +122,8 @@ extern const PinDescription g_APinDescription[]=
   { PIOB, PIO_PB7,     ID_PIOB, PIO_OUTPUT_0, PIO_DEFAULT, PIN_ATTR_DIGITAL,                 NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D6 TCK
   { PIOB, PIO_PB6,     ID_PIOB, PIO_OUTPUT_0, PIO_DEFAULT, PIN_ATTR_DIGITAL,                 NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D7 TMS
   
-  { PIOA, PIO_PA1B_TIOB0, ID_PIOA, PIO_OUTPUT_0, PIO_DEFAULT, PIN_ATTR_DIGITAL|PIN_ATTR_TIMER, NO_ADC, NO_ADC, NOT_ON_PWM,  TC0_CHB0   }, // D8
-  { PIOA, PIO_PA2,     ID_PIOA, PIO_OUTPUT_0, PIO_DEFAULT, PIN_ATTR_DIGITAL,                 NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D9
+  { PIOA, PIO_PA1B_TIOB0, ID_PIOA, PIO_PERIPH_B, PIO_DEFAULT, PIN_ATTR_DIGITAL|PIN_ATTR_TIMER, NO_ADC, NO_ADC, NOT_ON_PWM,  TC0_CHB0   }, // D8
+  { PIOA, PIO_PA2,     ID_PIOA, PIO_PERIPH_A, PIO_DEFAULT, (PIN_ATTR_DIGITAL|PIN_ATTR_PWM),    NO_ADC, NO_ADC, PWM_CH2,  NOT_ON_TIMER }, // D9
   { PIOA, PIO_PA7,     ID_PIOA, PIO_OUTPUT_0, PIO_DEFAULT, PIN_ATTR_DIGITAL,                 NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D10
 
   { PIOA, PIO_PA8,    ID_PIOA, PIO_INPUT, PIO_DEFAULT, PIN_ATTR_DIGITAL,                  NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D11 - S0

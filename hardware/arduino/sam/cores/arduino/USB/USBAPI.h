@@ -23,6 +23,11 @@
 
 #include "RingBuffer.h"
 
+#ifdef __SAM3S1A__
+//increase to improve CDC_RX performance for large data transfers
+#define CDC_SERIAL_BUFFER_SIZE	256 
+#endif//SAM3S1A
+
 //================================================================================
 //================================================================================
 //	USB
@@ -56,6 +61,10 @@ public:
 	virtual void accept(void);
 	virtual int peek(void);
 	virtual int read(void);
+#ifdef __SAM3S1A__
+	//add bulk read capability. Returns number of bytes read.
+	virtual int read(uint8_t* data, uint32_t len);
+#endif
 	virtual void flush(void);
 	virtual size_t write(uint8_t);
 	virtual size_t write(const uint8_t *buffer, size_t size);
@@ -189,12 +198,19 @@ bool	MSC_Data(uint8_t rx,uint8_t tx);
 
 //================================================================================
 //================================================================================
-//	CSC 'Driver'
+//	CDC 'Driver'
 
 int		CDC_GetInterface(uint8_t* interfaceNum);
 int		CDC_GetOtherInterface(uint8_t* interfaceNum);
+#ifdef __SAM3S1A__
+//define a reasonable getter for the descriptor so USBCore.cpp can fetch it
+const CDCDescriptor* CDC_GetDescriptor(void);
+#else
 int		CDC_GetDescriptor(int i);
+#endif
 bool	CDC_Setup(Setup& setup);
+
+
 
 //================================================================================
 //================================================================================
@@ -208,7 +224,6 @@ int USBD_RecvControl(void* d, uint32_t len);
 int USBD_SendInterfaces(void);
 bool USBD_ClassInterfaceRequest(Setup& setup);
 
-
 uint32_t USBD_Available(uint32_t ep);
 uint32_t USBD_SendSpace(uint32_t ep);
 uint32_t USBD_Send(uint32_t ep, const void* d, uint32_t len);
@@ -216,6 +231,7 @@ uint32_t USBD_Recv(uint32_t ep, void* data, uint32_t len);		// non-blocking
 uint32_t USBD_Recv(uint32_t ep);							// non-blocking
 void USBD_Flush(uint32_t ep);
 uint32_t USBD_Connected(void);
+
 
 #endif
 #endif

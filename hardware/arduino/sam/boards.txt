@@ -25,7 +25,7 @@ flutter.vid.0=0x2341
 flutter.pid.0=0x003e
 flutter.upload.tool=bossac
 flutter.upload.protocol=sam-ba
-flutter.upload.maximum_size=524288
+flutter.upload.maximum_size=65536
 flutter.upload.use_1200bps_touch=false
 flutter.upload.wait_for_upload_port=false
 flutter.upload.native_usb=true
@@ -44,24 +44,24 @@ flutter.build.pid=0x003e
 
 flutter_r2.name=Flutter Basic
 flutter_r2.vid.0=0x2341
-flutter_r2.pid.0=0x003e
+flutter_r2.pid.0=0x003d
 flutter_r2.upload.tool=bossac
 flutter_r2.upload.protocol=sam-ba
-flutter_r2.upload.maximum_size=524288
-flutter_r2.upload.use_1200bps_touch=false
-flutter_r2.upload.wait_for_upload_port=false
+flutter_r2.upload.maximum_size=65536
+flutter_r2.upload.use_1200bps_touch=true
+flutter_r2.upload.wait_for_upload_port=true
 flutter_r2.upload.native_usb=true
 flutter_r2.build.mcu=cortex-m3
 flutter_r2.build.f_cpu=64000000L
 flutter_r2.build.usb_product="Flutter Basic"
 flutter_r2.build.board=FLUTTER_R2
 flutter_r2.build.core=arduino
-flutter_r2.build.extra_flags=-D__SAM3S1A__ -mthumb -g
+flutter_r2.build.extra_flags=-D__SAM3S1A__ -mthumb {build.usb_flags}
 flutter_r2.build.ldscript=linker_scripts/gcc/flash.ld
 flutter_r2.build.variant=flutter_r2
 flutter_r2.build.variant_system_lib=libsam_sam3s1a_gcc_rel.a
 flutter_r2.build.vid=0x2341
-flutter_r2.build.pid=0x003e
+flutter_r2.build.pid=0x003d
 
 
 

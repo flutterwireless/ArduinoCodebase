@@ -28,6 +28,15 @@
  */
 
 #include "chip.h"
+#ifdef __SAM3S1A__
+void (*gpf_isr)(void) = (0UL);
+
+void UDP_Handler( void )
+{
+	if (gpf_isr)
+		gpf_isr();
+}
+#endif /* SAM3S1A */
 
 #if SAM3XA_SERIES
 
