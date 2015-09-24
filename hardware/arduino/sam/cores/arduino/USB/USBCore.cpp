@@ -91,6 +91,7 @@ static char isEndpointHalt = 0;
 extern const uint16_t STRING_LANGUAGE[];
 extern const uint8_t STRING_PRODUCT[];
 extern const uint8_t STRING_MANUFACTURER[];
+extern  uint8_t STRING_SERIAL[] __attribute__ ((weak));;
 extern const DeviceDescriptor USB_DeviceDescriptor;
 extern const DeviceDescriptor USB_DeviceDescriptorA;
 
@@ -100,11 +101,6 @@ const uint16_t STRING_LANGUAGE[2] = {
 };
 
 
-#ifdef __SAM3S1A__
-//Use Arduino Due instead of product from boards.txt
-#undef USB_PRODUCT
-#endif
-
 #ifndef USB_PRODUCT
 // Use a hardcoded product name if none is provided
 #if USB_PID == USB_PID_DUE
@@ -112,6 +108,12 @@ const uint16_t STRING_LANGUAGE[2] = {
 #else
 #define USB_PRODUCT "USB IO Board"
 #endif
+#endif
+
+#ifdef __SAM3S1A__
+//Use Arduino Due instead of product from boards.txt
+#undef USB_PRODUCT
+#define USB_PRODUCT "Flutter Board"
 #endif
 
 const uint8_t STRING_PRODUCT[] = USB_PRODUCT;
@@ -126,7 +128,13 @@ const uint8_t STRING_PRODUCT[] = USB_PRODUCT;
 #  define USB_MANUFACTURER "Unknown"
 #endif
 
-const uint8_t STRING_MANUFACTURER[12] = USB_MANUFACTURER;
+#ifdef __SAM3S1A__
+//Use Arduino Due instead of product from boards.txt
+#undef USB_MANUFACTURER
+#define USB_MANUFACTURER "Flutter Wireless"
+#endif
+
+const uint8_t STRING_MANUFACTURER[18] = USB_MANUFACTURER;
 
 #ifdef CDC_ENABLED
 #define DEVICE_CLASS 0x02
@@ -134,13 +142,18 @@ const uint8_t STRING_MANUFACTURER[12] = USB_MANUFACTURER;
 #define DEVICE_CLASS 0x00
 #endif
 
+
+
+extern uint8_t STRING_SERIAL[10] = "Not Set";
+
+
 //	DEVICE DESCRIPTOR
 #ifdef CDC_ENABLED 
 #ifdef __SAM3S1A__ //SAM3S modification
 //Since IAD is present, the device should be class EF.
 //see here https://msdn.microsoft.com/en-us/library/windows/hardware/ff540054(v=vs.85).aspx
 const DeviceDescriptor USB_DeviceDescriptor =
-	D_DEVICE(0xEF,0x02,0x01,64,USB_VID,USB_PID,0x100,IMANUFACTURER,IPRODUCT,0,1);
+	D_DEVICE(0xEF,0x02,0x01,64,USB_VID,USB_PID,0x100,IMANUFACTURER,IPRODUCT,ISERIAL,1);
 #else 
 const DeviceDescriptor USB_DeviceDescriptor =
 	D_DEVICE(0x00,0x00,0x00,64,USB_VID,USB_PID,0x100,IMANUFACTURER,IPRODUCT,0,1);
@@ -547,6 +560,8 @@ static bool USBD_SendDescriptor(Setup& setup)
 		}
 		else if (setup.wValueL == IMANUFACTURER) {
 			return USB_SendStringDescriptor(STRING_MANUFACTURER, setup.wLength);
+		}else if (setup.wValueL == ISERIAL) {
+			return USB_SendStringDescriptor(STRING_SERIAL, setup.wLength);
 		}
 		else {
 			return false;

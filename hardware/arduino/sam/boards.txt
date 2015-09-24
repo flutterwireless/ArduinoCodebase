@@ -45,6 +45,7 @@ flutter.build.pid=0x003e
 flutter_r2.name=Flutter Basic
 flutter_r2.vid.0=0x2341
 flutter_r2.pid.0=0x003d
+flutter_r2.serial.0=0x5
 flutter_r2.upload.tool=bossac
 flutter_r2.upload.protocol=sam-ba
 flutter_r2.upload.maximum_size=65536
