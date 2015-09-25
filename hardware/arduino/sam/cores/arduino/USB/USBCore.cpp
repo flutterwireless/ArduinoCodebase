@@ -166,7 +166,7 @@ const DeviceDescriptor USB_DeviceDescriptor =
 //SAM3S never saw this come into play. Only used if get configuration descriptor request has 8 byte length. 
 //Not sure how or why that should invoke DEVICE_CLASS=0x02.
 const DeviceDescriptor USB_DeviceDescriptorA =
-	D_DEVICE(DEVICE_CLASS,0x00,0x00,64,USB_VID,USB_PID,0x100,IMANUFACTURER,IPRODUCT,0,1);
+	D_DEVICE(DEVICE_CLASS,0x00,0x00,64,USB_VID,USB_PID,0x100,IMANUFACTURER,IPRODUCT,ISERIAL,1);
 
 //SAM3S stalls the request for this data because it cannot run at high speed.
 const DeviceDescriptor USB_DeviceQualifier =
