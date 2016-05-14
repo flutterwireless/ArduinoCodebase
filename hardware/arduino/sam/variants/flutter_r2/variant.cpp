@@ -30,7 +30,7 @@
  *   5             |  PA19  | "A1"
  *   6             |  PB0   | "A2"
  *   7             |  PB1   | "A3"
- *   8             |  PA8   | 
+ *   8             |  PA8   |
  *   9             |  PA7   |
  *  10             |  PA2   |
  *  11             |  PA1   |
@@ -89,23 +89,6 @@ extern "C" {
 /*
  * Pins descriptions
  */
- /*
- typedef struct _PinDescription
-{
-  Pio* pPort ;
-  uint32_t ulPin ;
-  uint32_t ulPeripheralId ;
-  EPioType ulPinType ;
-  uint32_t ulPinConfiguration ;
-  uint32_t ulPinAttribute ;
-  EAnalogChannel ulAnalogChannel ; // Analog pin in the Arduino context (label on the board) 
-  EAnalogChannel ulADCChannelNumber ; // ADC Channel number in the SAM device 
-  EPWMChannel ulPWMChannel ;
-  ETCChannel ulTCChannel ;
-} PinDescription ;
-*/
-
-
 extern const PinDescription g_APinDescription[]=
 {
   // 0 .. 53 - Digital pins
@@ -116,18 +99,18 @@ extern const PinDescription g_APinDescription[]=
   // 2/3 - UART (Serial)
   { PIOA, PIO_PA5,      ID_PIOA, PIO_PERIPH_A, PIO_DEFAULT,  PIN_ATTR_DIGITAL,               NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D2  RXD0
   { PIOA, PIO_PA6,      ID_PIOA, PIO_PERIPH_A, PIO_DEFAULT,  PIN_ATTR_DIGITAL,               NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D3  TXD0
-  
-  { PIOB, PIO_PB4,     ID_PIOB, PIO_OUTPUT_0, PIO_DEFAULT, PIN_ATTR_DIGITAL,                 NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D4 TDI
-  { PIOB, PIO_PB5,     ID_PIOB, PIO_OUTPUT_0, PIO_DEFAULT, PIN_ATTR_DIGITAL,                 NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D5 TDO
+
+  { PIOB, PIO_PB4,     ID_PIOB, PIO_PERIPH_B, PIO_DEFAULT, (PIN_ATTR_DIGITAL|PIN_ATTR_PWM),  NO_ADC, NO_ADC, PWM_CH2,  NOT_ON_TIMER }, // D4 TDI
+  { PIOB, PIO_PB5,     ID_PIOB, PIO_PERIPH_B, PIO_DEFAULT, (PIN_ATTR_DIGITAL|PIN_ATTR_PWM),  NO_ADC, NO_ADC, PWM_CH0,  NOT_ON_TIMER }, // D5 TDO
   { PIOB, PIO_PB7,     ID_PIOB, PIO_OUTPUT_0, PIO_DEFAULT, PIN_ATTR_DIGITAL,                 NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D6 TCK
   { PIOB, PIO_PB6,     ID_PIOB, PIO_OUTPUT_0, PIO_DEFAULT, PIN_ATTR_DIGITAL,                 NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D7 TMS
-  
-  { PIOA, PIO_PA1B_TIOB0, ID_PIOA, PIO_PERIPH_B, PIO_DEFAULT, PIN_ATTR_DIGITAL|PIN_ATTR_TIMER, NO_ADC, NO_ADC, NOT_ON_PWM,  TC0_CHB0   }, // D8
-  { PIOA, PIO_PA2,     ID_PIOA, PIO_PERIPH_A, PIO_DEFAULT, (PIN_ATTR_DIGITAL|PIN_ATTR_PWM),    NO_ADC, NO_ADC, PWM_CH2,  NOT_ON_TIMER }, // D9
-  { PIOA, PIO_PA7,     ID_PIOA, PIO_OUTPUT_0, PIO_DEFAULT, PIN_ATTR_DIGITAL,                 NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D10
+
+  { PIOA, PIO_PA1B_TIOB0, ID_PIOA, PIO_PERIPH_A, PIO_DEFAULT, (PIN_ATTR_DIGITAL|PIN_ATTR_TIMER|PIN_ATTR_PWM), NO_ADC, NO_ADC, PWM_CH1,  TC0_CHB0   }, // D8
+  { PIOA, PIO_PA2,     ID_PIOA, PIO_PERIPH_A, PIO_DEFAULT, (PIN_ATTR_DIGITAL|PIN_ATTR_PWM),                 NO_ADC, NO_ADC, PWM_CH2,  NOT_ON_TIMER }, // D9
+  { PIOA, PIO_PA7,     ID_PIOA, PIO_PERIPH_B, PIO_DEFAULT, (PIN_ATTR_DIGITAL|PIN_ATTR_PWM),                 NO_ADC, NO_ADC, PWM_CH3,  NOT_ON_TIMER }, // D10
 
   { PIOA, PIO_PA8,    ID_PIOA, PIO_INPUT, PIO_DEFAULT, PIN_ATTR_DIGITAL,                  NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D11 - S0
-  
+
   //LED
   { PIOA, PIO_PA20,    ID_PIOA, PIO_PERIPH_B, PIO_DEFAULT, (PIN_ATTR_DIGITAL|PIN_ATTR_PWM),        NO_ADC, NO_ADC, PWM_CH1,  NOT_ON_TIMER }, // D12 S1 RGB_R
   { PIOA, PIO_PA0,     ID_PIOA, PIO_PERIPH_A, PIO_DEFAULT, (PIN_ATTR_DIGITAL|PIN_ATTR_PWM),        NO_ADC, NO_ADC, PWM_CH0,  NOT_ON_TIMER }, // D13 S2 RGB_B
@@ -138,20 +121,20 @@ extern const PinDescription g_APinDescription[]=
   { PIOA, PIO_PA10,    ID_PIOA, PIO_INPUT, PIO_DEFAULT, PIN_ATTR_DIGITAL,                    NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER },  // D17 S6 (Radio GPIO2)
 
   // 18-21 - SPI
-  { PIOA, PIO_PA9,    ID_PIOA, PIO_OUTPUT_0,   PIO_DEFAULT, PIN_ATTR_DIGITAL,                NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D18 S7 CS
-  { PIOA, PIO_PA13A_MOSI,ID_PIOA,PIO_PERIPH_A, PIO_DEFAULT, PIN_ATTR_DIGITAL,                NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D19 S8 MOSI
-  { PIOA, PIO_PA12A_MISO,ID_PIOA,PIO_PERIPH_A, PIO_DEFAULT, PIN_ATTR_DIGITAL,                NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D20 S9 MISO
-  { PIOA, PIO_PA14A_SPCK,ID_PIOA,PIO_PERIPH_A, PIO_DEFAULT, PIN_ATTR_DIGITAL,                NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D21 S10 SCLK
+  { PIOA, PIO_PA9,    ID_PIOA, PIO_OUTPUT_0,   PIO_DEFAULT, PIN_ATTR_DIGITAL,                 NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D18 S7 CS
+  { PIOA, PIO_PA13A_MOSI,ID_PIOA,PIO_PERIPH_A, PIO_DEFAULT, (PIN_ATTR_DIGITAL|PIN_ATTR_PWM),  NO_ADC, NO_ADC, PWM_CH0,  NOT_ON_TIMER }, // D19 S8 MOSI
+  { PIOA, PIO_PA12A_MISO,ID_PIOA,PIO_PERIPH_A, PIO_DEFAULT, (PIN_ATTR_DIGITAL|PIN_ATTR_PWM),  NO_ADC, NO_ADC, PWM_CH1,  NOT_ON_TIMER }, // D20 S9 MISO
+  { PIOA, PIO_PA14A_SPCK,ID_PIOA,PIO_PERIPH_A, PIO_DEFAULT, PIN_ATTR_DIGITAL,                 NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D21 S10 SCLK
 
   //Analog Pins
-  { PIOA, PIO_PB2A_URXD1,   ID_PIOB, PIO_INPUT,    PIO_DEFAULT, PIN_ATTR_ANALOG,             ADC0,   ADC6,   NOT_ON_PWM,  NOT_ON_TIMER }, // D22 AD0  URXD1
-  { PIOA, PIO_PB3A_UTXD1,   ID_PIOB, PIO_INPUT,    PIO_DEFAULT, PIN_ATTR_ANALOG,             ADC1,   ADC7,   NOT_ON_PWM,  NOT_ON_TIMER }, // D23 AD1  UTXD1
+  { PIOB, PIO_PB2A_URXD1,   ID_PIOB, PIO_INPUT,    PIO_DEFAULT, PIN_ATTR_ANALOG,             ADC0,   ADC6,   NOT_ON_PWM,  NOT_ON_TIMER }, // D22 AD0  URXD1
+  { PIOB, PIO_PB3A_UTXD1,   ID_PIOB, PIO_INPUT,    PIO_DEFAULT, PIN_ATTR_ANALOG,             ADC1,   ADC7,   NOT_ON_PWM,  NOT_ON_TIMER }, // D23 AD1  UTXD1
   { PIOA, PIO_PA17X1_AD0,   ID_PIOA, PIO_INPUT,    PIO_DEFAULT, PIN_ATTR_ANALOG,             ADC2,   ADC0,   NOT_ON_PWM,  NOT_ON_TIMER }, // D24 AD2
   { PIOA, PIO_PA19X1_WKUP9, ID_PIOA, PIO_INPUT,    PIO_DEFAULT, PIN_ATTR_ANALOG,             ADC3,   ADC2,   NOT_ON_PWM,  NOT_ON_TIMER }, // D25 AD3
   { PIOB, PIO_PB0X1_AD4,    ID_PIOB, PIO_INPUT,    PIO_DEFAULT, PIN_ATTR_ANALOG,             ADC4,   ADC4,   NOT_ON_PWM,  NOT_ON_TIMER }, // D26 AD4
   { PIOB, PIO_PB1X1_AD5,    ID_PIOB, PIO_INPUT,    PIO_DEFAULT, PIN_ATTR_ANALOG,             ADC5,   ADC5,   NOT_ON_PWM,  NOT_ON_TIMER }, // D27 S11 AD5
-  
-  
+
+
   //Buttons
   { PIOA, PIO_PA18,    ID_PIOA, PIO_INPUT, PIO_DEFAULT, PIN_ATTR_DIGITAL,                    NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D28 B2
   { PIOB, PIO_PB12,    ID_PIOB, PIO_INPUT, PIO_DEFAULT, PIN_ATTR_DIGITAL,                    NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // D29 B1
@@ -166,11 +149,11 @@ extern const PinDescription g_APinDescription[]=
 
   // 33 - USB
   { PIOB, PIO_PB1X1_AD5, ID_PIOB, PIO_PERIPH_A, PIO_DEFAULT, PIN_ATTR_DIGITAL, NO_ADC, NO_ADC, NOT_ON_PWM,  NOT_ON_TIMER }, // ID
-  
+
   { NULL, 0, 0, PIO_NOT_A_PIN, PIO_DEFAULT, 0, NO_ADC, NO_ADC, NOT_ON_PWM, NOT_ON_TIMER } //D34
 
   // END
-  
+
 } ;
 
 #ifdef __cplusplus
@@ -274,7 +257,7 @@ void init( void )
     g_APinDescription[PINS_UART1].ulPinType,
     g_APinDescription[PINS_UART1].ulPin,
     g_APinDescription[PINS_UART1].ulPinConfiguration);
- 
+
  PIO_Configure(
     g_APinDescription[B1].pPort,
     g_APinDescription[B1].ulPinType,
@@ -290,7 +273,7 @@ TODO: wire up USB ID line and check out USB configuration
     g_APinDescription[PINS_USB].ulPin,
     g_APinDescription[PINS_USB].ulPinConfiguration);
 
-  
+
 //TODO: Initialize I2C pins for crypto IC
   PIO_Configure(
     g_APinDescription[PINS_SPI].pPort,
@@ -318,4 +301,3 @@ TODO: wire up USB ID line and check out USB configuration
 #ifdef __cplusplus
 }
 #endif
-

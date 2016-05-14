@@ -30,6 +30,17 @@
 /** Master clock frequency */
 #define VARIANT_MCK		64000000
 
+/** USB Stuff used in USBCore.cpp */
+#define UDD_USB_INT_LEVEL 		5 // By default USB interrupt have low priority
+#define MAX_ENDPOINTS			7
+#define EP0 					0 //Control endpoint is endpoint zero
+#define EP_TYPE_CONTROL 		UDP_CSR_EPTYPE_CTRL
+#define EP_TYPE_INTERRUPT_IN	UDP_CSR_EPTYPE_INT_IN
+#define EP_TYPE_BULK_OUT		UDP_CSR_EPTYPE_BULK_OUT
+#define EP_TYPE_BULK_IN			UDP_CSR_EPTYPE_BULK_IN
+
+/** end of USB stuff */
+
 #define SPI SPI0
 
 /*----------------------------------------------------------------------------
@@ -241,4 +252,3 @@ extern USARTClass Serial;
 #define SERIAL_PORT_HARDWARE1        Serial1
 
 #endif /* _VARIANT_FLUTTER_ */
-

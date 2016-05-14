@@ -31,10 +31,11 @@ flutter.upload.wait_for_upload_port=false
 flutter.upload.native_usb=true
 flutter.build.mcu=cortex-m3
 flutter.build.f_cpu=64000000L
+
 flutter.build.usb_product="Flutter Pre-release"
 flutter.build.board=FLUTTER
 flutter.build.core=arduino
-flutter.build.extra_flags=-D__SAM3S1A__ -mthumb -g
+flutter.build.extra_flags=-D__SAM3S1A__ -mthumb {build.usb_flags}
 flutter.build.ldscript=linker_scripts/gcc/flash.ld
 flutter.build.variant=flutter
 flutter.build.variant_system_lib=libsam_sam3s1a_gcc_rel.a
@@ -44,7 +45,7 @@ flutter.build.pid=0x003e
 
 flutter_r2.name=Flutter Basic
 flutter_r2.vid.0=0x2341
-flutter_r2.pid.0=0x003d
+flutter_r2.pid.0=0x003e
 flutter_r2.serial.0=0x5
 flutter_r2.upload.tool=bossac
 flutter_r2.upload.protocol=sam-ba
@@ -63,6 +64,3 @@ flutter_r2.build.variant=flutter_r2
 flutter_r2.build.variant_system_lib=libsam_sam3s1a_gcc_rel.a
 flutter_r2.build.vid=0x2341
 flutter_r2.build.pid=0x003d
-
-
-
