@@ -1,6 +1,12 @@
 ### Flutter Arduino Port
 This is a modified version of the Arduino IDE version 1.5.5-r2. To see which changes have been made, simply run a diff of the files in this folder with the unmodified repository. A copy of that is available here:
-www.flutterwireless.com/files/Arduino-1.5.5-r2.zip
+
+[Mac](http://flutterwireless.com/files/FlutterMac.zip)
+
+[Windows](http://flutterwireless.com/files/FlutterWindows.zip)
+
+[Linux](http://flutterwireless.com/files/FlutterLinux.zip)
+
 
 We recommend "Meld" as a diff tool if you do not already have one.
 
